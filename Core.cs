@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using HarmonyLib;
 using S1API;
 using S1RealisticBulletProofVest.Integrations;
@@ -18,7 +18,11 @@ namespace S1RealisticBulletProofVest
         {
             Instance = this;
             HarmonyPatches.SetModInstance(this);
+            
+            Preferences.Register();
+            
             LoggerInstance.Msg($"[{Constants.MOD_NAME}] Initialized - v{Constants.MOD_VERSION}");
+            LoggerInstance.Msg($"[{Constants.MOD_NAME}] Damage reduction: {Preferences.DamageReductionPercent}%");
             LoggerInstance.Msg($"[{Constants.MOD_NAME}] Checking Harmony patches...");
             CheckHarmonyPatches();
         }

@@ -15,6 +15,7 @@ using UnityEngine;
 #endif
 using HarmonyLib;
 using MelonLoader;
+using S1RealisticBulletProofVest.Utils;
 
 namespace S1RealisticBulletProofVest.Integrations
 {
@@ -44,11 +45,15 @@ namespace S1RealisticBulletProofVest.Integrations
             if (!IsWearingVest(__instance.Player))
                 return;
 
-            float damageReduction = damage * 0.5f;
+            float damageReductionPercent = Preferences.GetDamageReductionMultiplier();
+            float damageReduction = damage * damageReductionPercent;
             float originalDamage = damage;
             damage = Mathf.Max(0f, damage - damageReduction);
 
-            UnityEngine.Debug.Log($"Vest protection: {originalDamage:F1} -> {damage:F1}");
+            if (originalDamage != damage)
+            {
+                UnityEngine.Debug.Log($"Vest protection: {originalDamage:F1} -> {damage:F1} ({Preferences.DamageReductionPercent}% reduction)");
+            }
         }
 
         private static bool IsWearingVest(Player player)

@@ -5,8 +5,8 @@ namespace S1RealisticBulletProofVest.Utils
     public static class Constants
     {
         public const string MOD_NAME = "S1RealisticBulletProofVest";
-        public const string MOD_VERSION = "1.0.0";
-        public const string MOD_AUTHOR = "AeroChoclate";
+        public const string MOD_VERSION = "1.0.1";
+        public const string MOD_AUTHOR = "YourName";
         public const string MOD_DESCRIPTION = "Makes the bulletproof vest actually resist bullets and mitigate damage.";
 
         public const string PREFERENCES_CATEGORY = "S1RealisticBulletProofVest";

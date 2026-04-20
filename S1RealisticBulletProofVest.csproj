@@ -190,6 +190,7 @@
 	  <Compile Include="Core.cs" />
 	  <Compile Include="Integrations\HarmonyPatches.cs" />
 	  <Compile Include="Utils\Constants.cs" />
+	  <Compile Include="Utils\Preferences.cs" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="S1API.Forked" Version="1.7.0" />
