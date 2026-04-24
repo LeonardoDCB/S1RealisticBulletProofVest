@@ -10,7 +10,6 @@ This mod adds realistic damage mitigation to the bulletproof vest in Schedule I.
 
 - **Damage Mitigation**: Reduces incoming damage by 50% when wearing a vest
 - **Vest Detection**: Automatically detects vests in Top or Outerwear clothing slots
-- **Console Logging**: Outputs damage reduction information to the game console for debugging
 
 ## How It Works
 
@@ -87,15 +86,6 @@ Contributions are welcome! Here's how you can help:
 3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
 4. **Push to the branch** (`git push origin feature/amazing-feature`)
 5. **Open a Pull Request**
-
-### Ideas for Contributions
-
-- Add configurable damage reduction percentage via MelonPreferences
-- Add support for specific armor items with different protection levels
-- Add durability system (vests get damaged over time)
-- Restrict protection to bullet damage only (not melee)
-- Add visual feedback when damage is mitigated
-- Add multiplayer support for server-side damage reduction
 
 ## License
 
