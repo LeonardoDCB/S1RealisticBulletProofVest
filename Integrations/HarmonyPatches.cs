@@ -47,13 +47,7 @@ namespace S1RealisticBulletProofVest.Integrations
 
             float damageReductionPercent = Preferences.GetDamageReductionMultiplier();
             float damageReduction = damage * damageReductionPercent;
-            float originalDamage = damage;
             damage = Mathf.Max(0f, damage - damageReduction);
-
-            if (originalDamage != damage)
-            {
-                UnityEngine.Debug.Log($"Vest protection: {originalDamage:F1} -> {damage:F1} ({Preferences.DamageReductionPercent}% reduction)");
-            }
         }
 
         private static bool IsWearingVest(Player player)

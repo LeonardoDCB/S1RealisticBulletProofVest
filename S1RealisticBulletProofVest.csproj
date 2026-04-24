@@ -189,6 +189,7 @@
 	<ItemGroup>
 	  <Compile Include="Core.cs" />
 	  <Compile Include="Integrations\HarmonyPatches.cs" />
+	  <Compile Include="Integrations\VersionChecker.cs" />
 	  <Compile Include="Utils\Constants.cs" />
 	  <Compile Include="Utils\Preferences.cs" />
 	</ItemGroup>
