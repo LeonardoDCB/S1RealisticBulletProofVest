@@ -12,8 +12,8 @@ namespace S1RealisticBulletProofVest.Utils
 
         public static void Register()
         {
-            var category = new MelonPreferences_Category(Constants.PREFERENCES_CATEGORY, Constants.MOD_NAME);
-            _damageReductionPercent = category.CreateEntry(nameof(DamageReductionPercent), Constants.Defaults.DAMAGE_REDUCTION_PERCENT, Constants.Constraints.MIN_DAMAGE_REDUCTION, Constants.Constraints.MAX_DAMAGE_REDUCTION);
+            var category = MelonPreferences.CreateCategory(Constants.PREFERENCES_CATEGORY, Constants.MOD_NAME);
+            _damageReductionPercent = category.CreateEntry<float>(nameof(DamageReductionPercent), Constants.Defaults.DAMAGE_REDUCTION_PERCENT);
             MelonPreferences.Save();
         }
 
