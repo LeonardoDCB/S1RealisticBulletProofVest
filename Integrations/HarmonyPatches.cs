@@ -1,3 +1,4 @@
+using System;
 #if MONO
 using ScheduleOne;
 using ScheduleOne.Combat;
@@ -52,16 +53,17 @@ namespace S1RealisticBulletProofVest.Integrations
 
         private static bool IsWearingVest(Player player)
         {
-            if (player.Clothing.ClothingSlots == null)
+            // Only equipped tactical vests protect the player, not arbitrary tops or outerwear.
+#if MONO
+            if (player.Clothing.ClothingSlots == null ||
+                !player.Clothing.ClothingSlots.TryGetValue(EClothingSlot.Outerwear, out var outerwearSlot))
                 return false;
+#else
+            var outerwearSlot = player.Clothing.GetClothingSlot(EClothingSlot.Outerwear);
+#endif
 
-            if (player.Clothing.ClothingSlots.TryGetValue(EClothingSlot.Top, out var topSlot) && topSlot.Quantity > 0)
-                return true;
-
-            if (player.Clothing.ClothingSlots.TryGetValue(EClothingSlot.Outerwear, out var outerwearSlot) && outerwearSlot.Quantity > 0)
-                return true;
-
-            return false;
+            return outerwearSlot != null && outerwearSlot.Quantity > 0 &&
+                   string.Equals(outerwearSlot.ItemInstance?.ID, "tacticalvest", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

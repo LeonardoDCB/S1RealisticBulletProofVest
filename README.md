@@ -4,12 +4,12 @@ A Schedule I mod that makes bulletproof vests actually resist bullets and mitiga
 
 ## Description
 
-This mod adds realistic damage mitigation to the bulletproof vest in Schedule I. When you wear a vest in either the Top or Outerwear clothing slot, bullet and melee damage will be reduced by 50%.
+This mod reduces incoming damage when the game's Tactical Vest (`tacticalvest`) is equipped in the Outerwear slot. Merely carrying a vest, or wearing unrelated clothing, does not grant protection. The original damage hook is unchanged, so bullet and melee damage are both reduced by 50% by default.
 
 ## Features
 
 - **Damage Mitigation**: Reduces incoming damage by 50% when wearing a vest
-- **Vest Detection**: Automatically detects vests in Top or Outerwear clothing slots
+- **Vest Detection**: Checks the equipped Outerwear item's ID, not just whether a clothing slot is occupied
 
 ## How It Works
 
@@ -17,7 +17,7 @@ This mod adds realistic damage mitigation to the bulletproof vest in Schedule I.
 
 The mod uses Harmony to patch the `PlayerHealth.RpcLogic___TakeDamage_3505310624` method. When damage is about to be applied to a player:
 
-1. The patch checks if the player has a vest equipped (Top or Outerwear slot)
+1. The patch checks if the Tactical Vest is equipped in the Outerwear slot
 2. If a vest is detected, it reduces the damage by 50%
 3. The modified damage value is passed to the original method
 
@@ -39,8 +39,6 @@ Harmony prefix intercepts TakeDamage
 Check if player has vest equipped
     ↓
 If vest: reduce damage by 50%
-    ↓
-Log damage reduction to console
     ↓
 Original method processes reduced damage
 ```
@@ -67,15 +65,11 @@ dotnet build --configuration Il2cpp
 
 ### Output
 
-Built DLLs are automatically copied to the game's Mods folder (configured in csproj).
+To build against a game installed outside the default Steam location, pass `-p:GamePath="path/to/Schedule I"`. The build does not launch or close the game by default. Close the game, back up the previous DLL and copy the new DLL from `bin/Il2cpp/netstandard2.1/` into the game's `Mods` folder, replacing the old version (never load both copies).
 
 ## Configuration
 
-You can modify the damage reduction percentage in `Integrations/HarmonyPatches.cs`:
-
-```csharp
-float damageReduction = damage * 0.5f; // Change 0.5f to your desired percentage
-```
+Set `DamageReductionPercent` under `[S1RealisticBulletProofVest]` in `UserData/MelonPreferences.cfg` while the game is closed (50 by default).
 
 ## Contributing
 
